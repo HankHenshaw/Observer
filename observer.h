@@ -1,22 +1,35 @@
 #pragma once
 
 #include <list>
+#include <stack>
+#include <queue>
+#include <memory>
 
 class IObserver {
 public:
     virtual ~IObserver() {};
-    virtual void Update() = 0; // TODO
+    virtual void Update(std::queue<char> queue) = 0;
 };
 
-class Subject { //TODO Здесь должно обрабатываться stdin
+class Subject {
+    std::list<std::unique_ptr<IObserver>> m_listOfSubs2;
     std::list<IObserver*> m_listOfSubs;
+    std::stack<char> m_stack;
+    std::queue<char> m_queue;
+    int m_counter;
+    int m_blockSize;
+    bool isNestedBlock;
 public:
-    Subject() {};
+    Subject(int blockSize) : m_counter(0), m_blockSize(blockSize), isNestedBlock(false) {};
     ~Subject() {};
 
+    void AddCmd(char ch);
+    void AddCmd();
     void AddSub(IObserver* sub);
     void RemSub(IObserver* sub);
-    void Notify() const;
+    void AddSub(std::unique_ptr<IObserver> &&sub);
+    void RemSub(std::unique_ptr<IObserver> &&sub);
+    void Notify();
 };
 
 class FileObserver : public IObserver {
@@ -24,10 +37,11 @@ class FileObserver : public IObserver {
 public:
     FileObserver(Subject &sub) : m_subject(sub) {}
 
-    virtual void Update() override; // TODO: Должен выводить в file
+    virtual void Update(std::queue<char> queue) override;
     virtual ~FileObserver() {};
 
-    void printTime() const; // TODO
+    long printTime() const;
+    void printRestQueue(std::queue<char> &queue);
 };
 
 class CoutObserver : public IObserver {
@@ -35,6 +49,8 @@ class CoutObserver : public IObserver {
 public:
     CoutObserver(Subject &sub) : m_subject(sub) {}
 
-    virtual void Update() override; // TODO: Должен выводить в stdout
+    virtual void Update(std::queue<char> queue) override;
     virtual ~CoutObserver() {};
+
+    void printRestQueue(std::queue<char> &queue);
 };
