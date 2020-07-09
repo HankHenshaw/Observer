@@ -1,3 +1,14 @@
+/**
+ * @file observer.cpp
+ * @author HankHenshaw (you@domain.com)
+ * @brief Реализация методов для классов субъекта и наблюдателей
+ * @version 0.1
+ * @date 2020-07-09
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
+
 #include "observer.h"
 #include <iostream>
 #include <chrono>

@@ -1,3 +1,16 @@
+/**
+ * @file main.cpp
+ * @author HankHenshaw (you@domain.com)
+ * @brief Файл инициализации субъекта и наблюдателей
+ * 
+ * 
+ * @version 0.1
+ * @date 2020-07-09
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
+
 #include <iostream>
 #include <chrono>
 #include <thread>
@@ -34,6 +47,5 @@ int main(int argc, char* argv[])
     std::this_thread::sleep_for(1s);
     subj.AddCmd();
 
-    std::cout << "\nDone\n";
     return 0;
 }

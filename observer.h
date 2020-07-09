@@ -1,3 +1,14 @@
+/**
+ * @file observer.h
+ * @author HankHenshaw (you@domain.com)
+ * @brief Определения классов наблюдателя и субъекта
+ * @version 0.1
+ * @date 2020-07-09
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
+
 #pragma once
 
 #include <list>
@@ -5,12 +16,19 @@
 #include <queue>
 #include <memory>
 
+/**
+ * @brief Общий интерфейс для всех наблюдателей
+ * 
+ */
 class IObserver {
 public:
     virtual ~IObserver() {};
     virtual void Update(std::queue<char> queue) = 0;
 };
-
+/**
+ * @brief Класс Субъекта, который оповещает своих наблюдателей
+ * 
+ */
 class Subject {
     std::list<std::unique_ptr<IObserver>> m_listOfSubs2;
     std::list<IObserver*> m_listOfSubs;
@@ -25,14 +43,16 @@ public:
 
     void AddCmd(char ch);
     void AddCmd();
-    void AddSub(IObserver* sub);
-    void RemSub(IObserver* sub);
     void AddSub(std::unique_ptr<IObserver> &&sub);
     void RemSub(std::unique_ptr<IObserver> &&sub);
     void Notify();
     size_t SizeOfSubs() const;
 };
-
+/**
+ * @brief Классы вывода команд в файл
+ * 
+ * название файла будет таким: bulk*.log, где * - время в формате unixtime
+ */
 class FileObserver : public IObserver {
     Subject &m_subject;
 public:
@@ -45,6 +65,10 @@ public:
     void printRestQueue(std::queue<char> &queue);
 };
 
+/**
+ * @brief Класс вывода в стандартный поток
+ * 
+ */
 class CoutObserver : public IObserver {
     Subject &m_subject;
 public:
