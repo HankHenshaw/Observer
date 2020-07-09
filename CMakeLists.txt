@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(bulky VERSION 0.0.1$ENV{TRAVIS_BUILD_NUMBER})
+if(NOT DEFINED ENV{TRAVIS_BUILD_NUMBER})
+    set(ENV{TRAVIS_BUILD_NUMBER} 1)
+endif()
+
+project(bulky VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
