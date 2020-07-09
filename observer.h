@@ -30,6 +30,7 @@ public:
     void AddSub(std::unique_ptr<IObserver> &&sub);
     void RemSub(std::unique_ptr<IObserver> &&sub);
     void Notify();
+    size_t SizeOfSubs() const;
 };
 
 class FileObserver : public IObserver {

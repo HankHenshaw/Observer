@@ -72,6 +72,11 @@ void Subject::AddCmd()
     }
 }
 
+size_t Subject::SizeOfSubs() const
+{
+    return m_listOfSubs2.size();
+}
+
 long FileObserver::printTime() const
 {
     auto tm = std::chrono::system_clock::now();
