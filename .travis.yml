@@ -18,6 +18,7 @@ script:
 - cmake --build . --target package
 - ./tests
 after_success:
+- ls -la
 - bash <(curl -s https://codecov.io/bash)
 deploy:
   - provider: script
