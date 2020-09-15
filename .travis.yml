@@ -1,8 +1,10 @@
 dist: xenial
 language: cpp
-compiler: clang
+compiler: gcc
 addons:
   apt:
+    sources:
+    - ubuntu-toolchain-r-test
     packages:
     - libboost-test-dev
     - doxygen
@@ -12,13 +14,12 @@ addons:
     - graphviz
 script:
 - doxygen Doxyfile
-- cmake .
+- CXX=/usr/bin/g++-7 CC=/usr/bin/gcc-7 cmake .
 - cmake --build .
 - cmake --build . --target test
 - cmake --build . --target package
-- ./tests
+- ctest
 after_success:
-- ls -la
 - bash <(curl -s https://codecov.io/bash)
 deploy:
   - provider: script
