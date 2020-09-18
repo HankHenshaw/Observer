@@ -1,0 +1,5 @@
+<map id="Иерархия классов. Графический вид." name="Иерархия классов. Графический вид.">
+<area shape="rect" id="node1" href="$class_i_observer.html" title="Общий интерфейс для всех наблюдателей " alt="" coords="5,31,84,57"/>
+<area shape="rect" id="node2" href="$class_cout_observer.html" title="Класс вывода в стандартный поток " alt="" coords="132,5,235,32"/>
+<area shape="rect" id="node3" href="$class_file_observer.html" title="Классы вывода команд в файл " alt="" coords="135,56,231,83"/>
+</map>
