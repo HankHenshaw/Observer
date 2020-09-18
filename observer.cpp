@@ -67,7 +67,6 @@ void Subject::AddCmd(char ch)
 
     if(!isNestedBlock)
         ++m_counter;
-//    std::cout << "Counter = " << m_counter << '\n';
     if((m_counter%m_blockSize == 0) && (m_stack.empty()))
     {
         m_counter = 0;
